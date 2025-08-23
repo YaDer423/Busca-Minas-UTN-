@@ -3,7 +3,7 @@
  */
 
 package com.inventariolibros.puravida_mipyme;
-
+import javax.swing.*;
 /**
  *
  * @author Yader
@@ -11,6 +11,16 @@ package com.inventariolibros.puravida_mipyme;
 public class PuraVida_MiPyME {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+           SwingUtilities.invokeLater(() -> {
+            try {
+                // Aquí iría la inicialización de la GUI
+                // Por ahora, solo lanzamos las pruebas
+                tests.MiniTestRunner.main(args);
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al iniciar la aplicación: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
     }
-}
+    }
+
