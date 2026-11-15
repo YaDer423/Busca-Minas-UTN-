@@ -26,10 +26,36 @@ Inventario y compilaciones locales del 2026-11-15. Una compilación correcta no 
 
 | Componente | Tipo / destino | Validación |
 | --- | --- | --- |
-| [BuscaminasUTN/build.xml](<BuscaminasUTN/build.xml>) | netbeans-ant / 24 | Bloqueado: métodos, clases o dependencias faltantes |
-| [PuraVida_MiPyME/pom.xml](<PuraVida_MiPyME/pom.xml>) | maven | Sin ejecutar |
+| [BuscaminasUTN/build.xml](<BuscaminasUTN/build.xml>) | netbeans-ant / 24 | Compila; comprobado el 2026-11-15; ver alcance actualizado abajo |
+| [PuraVida_MiPyME/pom.xml](<PuraVida_MiPyME/pom.xml>) | maven | Compila; comprobado el 2026-11-15; ver alcance actualizado abajo |
 
 ## Archivos ignorados
 
 `.gitignore` excluye credenciales locales, estado del editor y salidas de las herramientas detectadas. No deja de versionar archivos que ya estaban en Git. Los manifiestos, archivos de bloqueo, recursos fuente y scripts de esquema forman parte del código.
 <!-- local-development:end -->
+
+<!-- build-repairs-20261115:start -->
+## Reparación y comprobación — 2026-11-15
+
+- Buscaminas corrige el nombre de columna, el cálculo de adyacencias, acceso a banderas y la validación del tamaño del tablero.
+- PuraVida_MiPyME corrige el constructor de PropertyChangeSupportMixim y restaura una comprobación ejecutable del dominio Producto → ItemOrden → Orden que el main referenciaba pero no incluía.
+
+Comprobado:
+
+- Compilan Ant/Buscaminas y Maven/PuraVida_MiPyME.
+- SmokeTablero verificó minas, adyacencias y banderas en tamaños de 2 a 12, y el rechazo del tamaño 1.
+- El main de PuraVida verificó importes decimales, recálculo y cambio de cantidades.
+
+Comandos:
+
+```powershell
+.\build-local.ps1
+.\test-local.ps1
+mvn -f PuraVida_MiPyME/pom.xml package
+```
+
+Alcance pendiente:
+
+- PuraVida_MiPyME sigue siendo una comprobación de dominio: no incluye una GUI de inventario terminada.
+
+<!-- build-repairs-20261115:end -->

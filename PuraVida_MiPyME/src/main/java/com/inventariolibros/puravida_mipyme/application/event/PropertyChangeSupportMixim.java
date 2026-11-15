@@ -15,7 +15,7 @@ import java.beans.PropertyChangeSupport;
 public class PropertyChangeSupportMixim {
         private final PropertyChangeSupport support;
 
-    public PropertyChangeSupportMixin(Object sourceBean) {
+    public PropertyChangeSupportMixim(Object sourceBean) {
         this.support = new PropertyChangeSupport(sourceBean);
     }
 
