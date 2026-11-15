@@ -35,7 +35,8 @@ public class Casilla {
     public void setEstaDestapada(boolean estaDestapada) {
         this.estaDestapada = estaDestapada;
     }
-    // ... (otros getters y setters)
+    public boolean isEstaMarcada() { return estaMarcada; }
+    public void setEstaMarcada(boolean marcada) { this.estaMarcada = marcada; }
     public int getMinasAdyacentes() {
         return minasAdyacentes;
     }

@@ -12,43 +12,54 @@ import java.util.Random;
 public class Tablero {
  private int tamaño;
  private int numMinas;
- private Casilla[][] casillas; 
+ private Casilla[][] casillas;
  private boolean juegoTerminado;
-    
+
  public Tablero(int tamaño){
+     if (tamaño < 2) {
+         throw new IllegalArgumentException("El tablero debe tener al menos dos filas y columnas");
+     }
      this.tamaño = tamaño;
-     this.numMinas = 2 * tamaño; //segun el requerimiento 
+     this.numMinas = 2 * tamaño; //segun el requerimiento
      this.casillas = new Casilla[tamaño][tamaño];
-     this.juegoTerminado = false; 
-     
-     // inicializar todas las casillas 
+     this.juegoTerminado = false;
+
+     // inicializar todas las casillas
      for (int i = 0; i < tamaño; i++){
          for (int j = 0; j < tamaño; j++){
              casillas[i][j] = new Casilla();
          }
      }
-     
+
      generarMinas();
      contarMinasAdyacentesParaTodas();
-     
+
  }
+ private void contarMinasAdyacentesParaTodas() {
+     for (int fila = 0; fila < tamaño; fila++) {
+         for (int columna = 0; columna < tamaño; columna++) {
+             casillas[fila][columna].setMinasAdyacentes(contarMinasAdyacentes(fila, columna));
+         }
+     }
+ }
+
  private void generarMinas(){
      Random random = new Random();
      int minasColocadas = 0;
      while (minasColocadas < numMinas){
          int fila = random.nextInt(tamaño);
-         int Columna = random.nextInt(tamaño);
-         
-         // sila casilla no tiene ya una mina, se pone una 
+         int columna = random.nextInt(tamaño);
+
+         // sila casilla no tiene ya una mina, se pone una
          if (!casillas[fila][columna].isEsMina()){
              casillas[fila][columna].setEsMina(true);
              minasColocadas++;
-         
+
      }
      }
  }
- 
- 
+
+
     private int contarMinasAdyacentes(int fila, int columna) {
         int count = 0;
         // Revisar las 8 casillas alrededor
@@ -122,7 +133,7 @@ public class Tablero {
         return juegoTerminado;
     }
 }
- 
- 
- 
+
+
+
 
